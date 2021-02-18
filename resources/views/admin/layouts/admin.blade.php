@@ -614,6 +614,13 @@
 
                         </a>
                     </li>
+                    <li
+                            class="{{ preg_match('/membership/i', $active) ? 'active' : '' }}">
+                        <a href="{{url('admin/membership')}}">
+                            <i class="fa fa-gift"></i>
+                            <span class="text-capitalize">membership</span>
+                        </a>
+                    </li>
 
                     {{-- <li class=" treeview">
                         <a href="#">

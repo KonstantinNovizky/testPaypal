@@ -36,11 +36,5 @@ return [
     'client_id' => env('PAYPAL_SANDBOX_CLIENT_ID','AaVlBLOqaLoyEUWE6s1BMiHF_ETbhfLK44UKfiPm1YO_So0xRe6hDjIBwHDMcKwHHostJaM6D5-0622k'),
     'secret' => env('PAYPAL_SANDBOX_CLIENT_SECRET','EMiNqrAAgLIDT5OBzPsB0Q791vHiqpm95HePI_iPlkwc27VCEHBqZA9AM4KO-5kZBn_eR5ZNzP_9TE5B'),
     'currency' => env('PAYPAL_CURRENCY', 'USD'),
-    'settings' => array(
-        'mode' => env('PAYPAL_MODE','sandbox'),
-        'http.ConnectionTimeOut' => 30,
-        'log.LogEnabled' => true,
-        'log.FileName' => storage_path() . '/logs/paypal.log',
-        'log.LogLevel' => 'ERROR'
-    ),
+    'mode' => 'sandbox'
 ];

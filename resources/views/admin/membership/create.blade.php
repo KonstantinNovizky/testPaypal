@@ -41,33 +41,29 @@ Dashboard
         <div class="col-xs-6 col-xs-offset-3">
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">Add New User</h3>
+                    <h3 class="box-title">Add New Membership</h3>
                 </div>
 
                 <!-- /.box-header -->
                 <div class="box-body">
-                    <form
-                        method="POST"
-                        action="{{ route('admin.users.store') }}"
-                    >
+                    <form method="POST" action="{{ route('add.membership') }}">
                         @csrf
-
-
                         <div class="form-group">
                             <label
                                 class="small mb-1"
                                 for="inputFirstName"
-                            >First Name</label>
-                            <input
-                                class="form-control py-4"
-                                id="inputFirstName"
-                                type="text"
-                                name="first_name"
-                                placeholder="Enter name"
-                            />
-                            @if ($errors->has('first_name'))
+                            >Month</label>
+                            <select class="form-control py-4" id="inputFirstName" name="month">
+                                <option value="1">Every Months</option>
+                                <option value="2">Two Months</option>
+                                <option value="3">Three Months</option>
+                                <option value="4">Four Months</option>
+                                <option value="6">Half of Year</option>
+                            </select>
+
+                            @if ($errors->has('month'))
                             <small class="help-block text-danger">
-                                {{ $errors->first('first_name') }}
+                                {{ $errors->first('month') }}
                             </small>
                             @endif
                         </div>
@@ -79,79 +75,19 @@ Dashboard
                             <input
                                 class="form-control py-4"
                                 id="inputFirstName"
-                                type="text"
-                                name="last_name"
-                                placeholder="Enter name"
+                                type="number"
+                                name="amount"
+                                placeholder="Enter Amount"
+                                min="0"
                             />
-                            @if ($errors->has('last_name'))
+                            @if ($errors->has('amount'))
                             <small class="help-block text-danger">
-                                {{ $errors->first('last_name') }}
+                                {{ $errors->first('amount') }}
                             </small>
                             @endif
                         </div>
-                        <div class="form-group">
-                            <label
-                                class="small mb-1"
-                                for="email"
-                            >Email</label>
-                            <input
-                                class="form-control py-4"
-                                type="email"
-                                id="email"
-                                name="email"
-                                placeholder="Enter email"
-                            />
-                            @if ($errors->has('email'))
-                            <small class="help-block text-danger">
-                                {{ $errors->first('email') }}
-                            </small>
-                            @endif
-                        </div>
-                        <div class="form-group">
-                            <label
-                                class="small mb-1"
-                                for="inputPassword"
-                            >Password</label>
-                            <input
-                                class="form-control py-4"
-                                id="inputPassword"
-                                type="password"
-                                placeholder="Enter password"
-                                name="password"
-                            />
-                            @if ($errors->has('password'))
-                            <small class="help-block text-danger">
-                                {{ $errors->first('password') }}
-                            </small>
-                            @endif
-                        </div>
-
-
-                        <div class="form-group">
-                            <label
-                                class="small mb-1"
-                                for="inputConfirmPassword"
-                            >
-                                Confirm Password
-                            </label>
-                            <input
-                                class="form-control py-4"
-                                id="inputConfirmPassword"
-                                name="password_confirmation"
-                                type="password"
-                                placeholder="Confirm password"
-                            />
-                            @if ($errors->has('password_confirmation'))
-                            <small class="help-block text-danger">
-                                {{ $errors->first('password_confirmation') }}
-                            </small>
-                            @endif
-                        </div>
-                        <button
-                            class="btn btn-primary btn-block"
-                            type="submit"
-                        >
-                            Crate Account
+                        <button class="btn btn-primary btn-block" type="submit">
+                            Create Membership
                         </button>
                     </form>
 

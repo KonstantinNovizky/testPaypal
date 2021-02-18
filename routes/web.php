@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminMembershipController;
 use App\Http\Controllers\AdminsController;
 use App\Http\Controllers\AdminTradesController;
 use Illuminate\Support\Facades\Route;
@@ -25,7 +26,6 @@ use App\Http\Controllers\SubscriptionsController;
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PaymentsController;
-use App\Http\Controllers\PayPalController;
 use App\Http\Controllers\UserTradesController;
 use App\Http\Controllers\UserDashboardController;
 use App\Http\Controllers\UserUserController;
@@ -111,6 +111,8 @@ Route::prefix("admin")->middleware('admin')->group(function () {
     Route::get('testimonial', [AdminsController::class, 'index'])->name('testimonial');
     Route::post('testimonial', [AdminsController::class, 'testimonial'])->name('sendMsg');
 
+    Route::resource('membership', AdminMembershipController::class);
+    Route::post('store', [AdminMembershipController::class, 'addMembership'])->name('add.membership');
     // AS I prefixed this group by admin, so just /go will not work but /admin/go will work
     Route::get('/go', function () {
         echo 'go';
@@ -123,6 +125,7 @@ Route::prefix("admin")->middleware('admin')->group(function () {
 // Route::get('payment/success', 'PayPalController@success')->name('payment.success');
 // Route::get('paypal', [PayPalController::class, 'index']);
 // Route::get('paypal-approval', [PayPalController::class, 'post']);
+
 Route::get('go-payment', [PaymentsController::class, 'index'])->name('go.payment');
 Route::post('handle-payment', [PaymentsController::class, 'handlePayment'])->name('make.payment');
 Route::get('cancel-payment', [PaymentsController::class, 'paymentCancel'])->name('cancel.payment');

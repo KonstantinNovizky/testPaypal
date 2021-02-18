@@ -14,9 +14,10 @@
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^8.12",
         "laravel/tinker": "^2.5",
+        "league/omnipay": "^3.1",
+        "omnipay/paypal": "^3.0",
         "paypal/rest-api-sdk-php": "^1.14",
-        "shuchkin/simplexlsx": "^0.8.21",
-        "srmklive/paypal": "~1.0"
+        "shuchkin/simplexlsx": "^0.8.21"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

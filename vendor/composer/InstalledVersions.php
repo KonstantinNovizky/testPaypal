@@ -29,7 +29,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '21524a67b4ffc2bd5b50aabc3a031879b6815bc6',
+    'reference' => '8c52b10666265a78a6e61a962d14d86163f0e9ed',
     'name' => 'laravel/laravel',
   ),
   'versions' => 
@@ -51,6 +51,15 @@ private static $installed = array (
       array (
       ),
       'reference' => '283a40c901101e66de7061bd359252c013dcc43c',
+    ),
+    'clue/stream-filter' => 
+    array (
+      'pretty_version' => 'v1.5.0',
+      'version' => '1.5.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'aeb7d8ea49c7963d3b581378955dbf5bc49aa320',
     ),
     'cordoval/hamcrest-php' => 
     array (
@@ -468,7 +477,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '21524a67b4ffc2bd5b50aabc3a031879b6815bc6',
+      'reference' => '8c52b10666265a78a6e61a962d14d86163f0e9ed',
     ),
     'laravel/sail' => 
     array (
@@ -515,6 +524,15 @@ private static $installed = array (
       ),
       'reference' => '353f66d7555d8a90781f6f5e7091932f9a4250aa',
     ),
+    'league/omnipay' => 
+    array (
+      'pretty_version' => 'v3.1.0',
+      'version' => '3.1.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '1ba7c8a3312cf2342458b99c9e5b86eaae44aed2',
+    ),
     'mockery/mockery' => 
     array (
       'pretty_version' => '1.4.2',
@@ -523,6 +541,15 @@ private static $installed = array (
       array (
       ),
       'reference' => '20cab678faed06fac225193be281ea0fddb43b93',
+    ),
+    'moneyphp/money' => 
+    array (
+      'pretty_version' => 'v3.3.1',
+      'version' => '3.3.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '122664c2621a95180a13c1ac81fea1d2ef20781e',
     ),
     'monolog/monolog' => 
     array (
@@ -580,6 +607,24 @@ private static $installed = array (
       ),
       'reference' => '7c2b95589bf81e274e61e47f7672a1b2c3e06eaa',
     ),
+    'omnipay/common' => 
+    array (
+      'pretty_version' => 'v3.0.5',
+      'version' => '3.0.5.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '0d1f4486c1c873537ac030d37c7ce2986c4de1d2',
+    ),
+    'omnipay/paypal' => 
+    array (
+      'pretty_version' => 'v3.0.2',
+      'version' => '3.0.2.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '519db61b32ff0c1e56cbec94762b970ee9674f65',
+    ),
     'opis/closure' => 
     array (
       'pretty_version' => '3.6.1',
@@ -615,6 +660,81 @@ private static $installed = array (
       array (
       ),
       'reference' => 'e4782611070e50613683d2b9a57730e9a3ba5451',
+    ),
+    'php-http/async-client-implementation' => 
+    array (
+      'provided' => 
+      array (
+        0 => '1.0',
+      ),
+    ),
+    'php-http/client-implementation' => 
+    array (
+      'provided' => 
+      array (
+        0 => '1.0',
+      ),
+    ),
+    'php-http/discovery' => 
+    array (
+      'pretty_version' => '1.13.0',
+      'version' => '1.13.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '788f72d64c43dc361e7fcc7464c3d947c64984a7',
+    ),
+    'php-http/guzzle7-adapter' => 
+    array (
+      'pretty_version' => '0.1.1',
+      'version' => '0.1.1.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '1967de656b9679a2a6a66d0e4e16fa99bbed1ad1',
+    ),
+    'php-http/httplug' => 
+    array (
+      'pretty_version' => '2.2.0',
+      'version' => '2.2.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '191a0a1b41ed026b717421931f8d3bd2514ffbf9',
+    ),
+    'php-http/message' => 
+    array (
+      'pretty_version' => '1.11.0',
+      'version' => '1.11.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'fb0dbce7355cad4f4f6a225f537c34d013571f29',
+    ),
+    'php-http/message-factory' => 
+    array (
+      'pretty_version' => 'v1.0.2',
+      'version' => '1.0.2.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'a478cb11f66a6ac48d8954216cfed9aa06a501a1',
+    ),
+    'php-http/message-factory-implementation' => 
+    array (
+      'provided' => 
+      array (
+        0 => '1.0',
+      ),
+    ),
+    'php-http/promise' => 
+    array (
+      'pretty_version' => '1.1.0',
+      'version' => '1.1.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '4c4c1f9b7289a2ec57cde7f1e9762a5789506f88',
     ),
     'phpdocumentor/reflection-common' => 
     array (
@@ -1000,15 +1120,6 @@ private static $installed = array (
       array (
       ),
       'reference' => '6b6b2a7eed22a38cdb8c5e8ed17e4aa80eb40ced',
-    ),
-    'srmklive/paypal' => 
-    array (
-      'pretty_version' => '1.8.0',
-      'version' => '1.8.0.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '0c2ae237577f62396d474674cb40f82825a41ffb',
     ),
     'swiftmailer/swiftmailer' => 
     array (

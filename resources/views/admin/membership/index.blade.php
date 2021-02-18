@@ -1,7 +1,7 @@
 @extends('admin.layouts.admin')
 
 @section('title')
-Dashboard
+    Membership
 @endsection
 
 @section('underhead')
@@ -35,10 +35,10 @@ Dashboard
 
 
     <h1>
-        Users
+        Membership
         <small>Detail</small>
         <a
-            href="{{ route('admin.users.create') }}"
+            href="{{ url('admin/membership/create') }}"
             class="btn btn-primary text-uppercase"
         >create</a>
     </h1>
@@ -46,7 +46,7 @@ Dashboard
         <li><a href="{{ url('admin') }}"><i class="fa fa-dashboard"></i>
                 Home</a>
         </li>
-        <li class="active">Users</li>
+        <li class="active">Memberships</li>
     </ol>
 </section>
 
@@ -56,14 +56,12 @@ Dashboard
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title">All Users Detail</h3>
+                    <h3 class="box-title">All Memberships Detail</h3>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
-                    <div
-                        id="example1_wrapper"
-                        class="dataTables_wrapper form-inline dt-bootstrap"
-                    >
+                    <div id="example1_wrapper"
+                        class="dataTables_wrapper form-inline dt-bootstrap">
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="table-responsive">
@@ -71,8 +69,7 @@ Dashboard
                                         id="searchable_table"
                                         class="table table-bordered table-striped dataTable"
                                         role="grid"
-                                        aria-describedby="example1_info"
-                                    >
+                                        aria-describedby="example1_info">
                                         <thead>
                                             <tr role="row" class="no-wrap-container">
                                                 <th
@@ -83,8 +80,8 @@ Dashboard
                                                     colspan="1"
                                                     aria-sort="ascending"
                                                     aria-label="Rendering engine: activate to sort column descending"
-                                                    style="width: 290px;"
-                                                >#</th>
+                                                    style="width: 50px"
+                                                >No</th>
                                                 <th
                                                     class="sorting"
                                                     tabindex="0"
@@ -92,8 +89,8 @@ Dashboard
                                                     rowspan="1"
                                                     colspan="1"
                                                     aria-label="Browser: activate to sort column ascending"
-                                                    style="width: 361px;"
-                                                >First Name</th>
+                                                    style="width: 50px"
+                                                >Months</th>
                                                 <th
                                                     class="sorting"
                                                     tabindex="0"
@@ -101,217 +98,35 @@ Dashboard
                                                     rowspan="1"
                                                     colspan="1"
                                                     aria-label="Platform(s): activate to sort column ascending"
-                                                    style="width: 334px;"
-                                                >Last Name</th>
+                                                    style="width: 50px"
+                                                >Amount</th>
                                                 <th
-                                                    class="sorting"
-                                                    tabindex="0"
-                                                    aria-controls="example1"
-                                                    rowspan="1"
-                                                    colspan="1"
-                                                    aria-label="Platform(s): activate to sort column ascending"
-                                                    style="width: 334px;"
-                                                >IP Address</th>
-                                                <th
-                                                    class="sorting"
-                                                    tabindex="0"
-                                                    aria-controls="example1"
-                                                    rowspan="1"
-                                                    colspan="1"
-                                                    aria-label="Platform(s): activate to sort column ascending"
-                                                    style="width: 334px;"
-                                                >Type of Subscription</th>
-                                                <th
-                                                    class="sorting"
-                                                    tabindex="0"
-                                                    aria-controls="example1"
-                                                    rowspan="1"
-                                                    colspan="1"
-                                                    aria-label="Platform(s): activate to sort column ascending"
-                                                    style="width: 334px;"
-                                                >Expire</th>
-                                                <th
-                                                    class="sorting"
-                                                    tabindex="0"
-                                                    aria-controls="example1"
-                                                    rowspan="1"
-                                                    colspan="1"
-                                                    aria-label="Platform(s): activate to sort column ascending"
-                                                    style="width: 334px;"
-                                                >Telegram ID</th>
-                                                <th
-                                                    class="sorting"
-                                                    tabindex="0"
-                                                    aria-controls="example1"
-                                                    rowspan="1"
-                                                    colspan="1"
-                                                    aria-label="Platform(s): activate to sort column ascending"
-                                                    style="width: 334px;"
-                                                >Twitter Account</th>
-
-                                                <th
-                                                    class="sorting"
-                                                    tabindex="0"
-                                                    aria-controls="example1"
-                                                    rowspan="1"
-                                                    colspan="1"
-                                                    aria-label="Engine version: activate to sort column ascending"
-                                                    style="width: 252px;"
-                                                >Email</th>
-                                                <th
-                                                    class="sorting"
-                                                    tabindex="0"
-                                                    aria-controls="example1"
-                                                    rowspan="1"
-                                                    colspan="1"
-                                                    aria-label="CSS grade: activate to sort column ascending"
-                                                    style="width: 190px;"
-                                                >Phone</th>
-                                                <th
-                                                    class="sorting"
-                                                    tabindex="0"
-                                                    aria-controls="example1"
-                                                    rowspan="1"
-                                                    colspan="1"
-                                                    aria-label="CSS grade: activate to sort column ascending"
-                                                    style="width: 190px;"
-                                                >Actions</th>
+                                                        class="sorting"
+                                                        tabindex="0"
+                                                        aria-controls="example1"
+                                                        rowspan="1"
+                                                        colspan="1"
+                                                        aria-label="Platform(s): activate to sort column ascending"
+                                                        style="width: 50px"
+                                                >Operation</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @php
-                                            $i = 0;;
-                                            @endphp
-                                            @foreach ($users as $user)
-                                            @if (session('id') == $user->id)
-                                                @continue
-                                            @endif
-                                            <tr
-                                                class="{{ $i%2 == 0 ? 'even' : 'odd' }} no-wrap-container"
-                                                role="row"
-                                            >
+
+                                            @foreach ($memberships as $item)
+                                                @php $i=0; @endphp
+
+                                            <tr class="{{ $i%2 == 0 ? 'even' : 'odd' }} no-wrap-container" role="row">
                                                 <td class="sorting_1">
-                                                    {{ $user->id }}</td>
-                                                <td>{{ $user->first_name }}</td>
-                                                <td>{{ $user->last_name }}</td>
-                                                <td>IP Address</td>
-
-
-                                                @php
-                                                // We will do it after
-                                                /*
-                                                $now = new \DateTime();
-                                                $oneYearBefore = new \DateTime();
-                                                $oneYearBefore->sub();
-
-                                                dd($user->subscription()->where('user_id',
-                                                24)->first());
-                                                $subscriptionDate = new \DateTime();
-                                                dd($now);
-                                                */
-                                                @endphp
-
-
+                                                    {{ $item->id }}</td>
+                                                <td>{{ $item->month }}</td>
+                                                <td>{{ $item->amount }}</td>
+                                                <td>{{ $item->amount }}</td>
                                                 <td>
-                                                    @if(count($user->subscriptions))
-                                                    {{ $user->subscriptions()->first()->price == 1 ? "Monthly" : "Yearly" }}
-                                                    @else
-                                                    Not Subscripte Yet
-                                                    @endif
+                                                    <p><a class="btn btn-success">edit</a></p>
+                                                    <p><a class="btn btn-danger">delete</a></p>
                                                 </td>
-                                                <td>
-                                                    @if(count($user->subscriptions))
-                                                    @php
-                                                    $dateFormatString = "d F, Y";
-                                                    $subscription =
-                                                    $user->subscriptions()->first();
-                                                    if($subscription->price == 1)
-                                                    {
-                                                    $expireDate =
-                                                    date($dateFormatString,
-                                                    strtotime($subscription->created_at->addYear()));
-                                                    }
-                                                    else
-                                                    {
-                                                    $expireDate =
-                                                    date($dateFormatString,
-                                                    strtotime($subscription->created_at->addMonth()));
-                                                    }
-                                                    @endphp
-                                                    {{ $expireDate }}
 
-                                                    @else
-                                                    Not Subscripte Yet
-                                                    @endif
-                                                </td>
-                                                <td>{{ $user->telegram_id }}</td>
-                                                <td>{{ $user->twitter_id }}</td>
-
-                                                <td>{{ $user->email }}</td>
-                                                <td>{{ $user->phone }}</td>
-                                                <td>
-                                                    <form
-                                                        action="{{ route('admin.users.update', $user->id) }}"
-                                                        method="POST"
-                                                        class="d-inline"
-                                                        style="display: inline"
-                                                    >
-                                                        @csrf
-                                                        @method("put")
-                                                        <input
-                                                            type="hidden"
-                                                            name="status"
-                                                            value="{{ $user->status == 0 ? 1 : 0 }}"
-                                                        >
-                                                        <button
-                                                            type="submit"
-                                                            class="btn btn-sm btn-{{ $user->status ? 'warning' : 'primary' }}"
-                                                            style="margin-bottom: .2rem"
-                                                            onclick="return confirm('Are you sure! You want to {{ $user->status ? 'deactivate' : 'activate' }} this user?')"
-                                                        >
-                                                            @if ($user->status)
-                                                            <span>
-                                                                {{-- <i
-                                                                    class="fa fa-th-list mr-1"></i> --}}
-                                                                {{-- Deactivate --}}
-                                                                <i class="fa fa-ban"></i>
-                                                            </span>
-                                                            @else
-                                                            <span>
-                                                                {{-- <i
-                                                                    class="fa fa-th-list mr-1"></i>
-                                                                Activate --}}
-                                                                <i class="fa fa-check"></i>
-                                                            </span>
-                                                            @endif
-                                                        </button>
-                                                    </form>
-                                                    <form
-                                                        action="{{ route('admin.users.destroy', $user->id) }}"
-                                                        method="POST"
-                                                        class="d-inline"
-                                                    >
-                                                        @csrf
-                                                        @method("delete")
-                                                        <button
-                                                            class="btn btn-sm btn-danger my-1"
-                                                            type="submit"
-                                                            onclick="return confirm('Are you sure! You want to delete this user?')"
-                                                        >
-                                                            <i class="fa fa-times"></i>
-                                                        </button>
-                                                    </form>
-                                                    <a href="{{ route('admin.users.edit', $user->id) }}" class="btn btn-sm btn-warning">
-                                                        <i class="fa fa-pencil"></i>
-                                                    </a>
-
-                                                    <a
-                                                        href="{{ route('admin.users.show', $user->id) }}"
-                                                        class="btn btn-sm btn-primary"
-                                                        style="margin-top: .3rem"
-                                                    >
-                                                        <i class="fa fa-eye"></i>
-                                                    </a>
                                             </tr>
                                             @endforeach
                                         </tbody>
@@ -325,8 +140,8 @@ Dashboard
                                                     colspan="1"
                                                     aria-sort="ascending"
                                                     aria-label="Rendering engine: activate to sort column descending"
-                                                    style="width: 290px;"
-                                                >#</th>
+                                                    style="width: 50px"
+                                                >No</th>
                                                 <th
                                                     class="sorting"
                                                     tabindex="0"
@@ -334,8 +149,8 @@ Dashboard
                                                     rowspan="1"
                                                     colspan="1"
                                                     aria-label="Browser: activate to sort column ascending"
-                                                    style="width: 361px;"
-                                                >First Name</th>
+                                                    style="width: 50px"
+                                                >Months</th>
                                                 <th
                                                     class="sorting"
                                                     tabindex="0"
@@ -343,35 +158,17 @@ Dashboard
                                                     rowspan="1"
                                                     colspan="1"
                                                     aria-label="Platform(s): activate to sort column ascending"
-                                                    style="width: 334px;"
-                                                >Last Name</th>
+                                                    style="width: 50px"
+                                                >Amount</th>
                                                 <th
-                                                    class="sorting"
-                                                    tabindex="0"
-                                                    aria-controls="example1"
-                                                    rowspan="1"
-                                                    colspan="1"
-                                                    aria-label="Engine version: activate to sort column ascending"
-                                                    style="width: 252px;"
-                                                >Email</th>
-                                                <th
-                                                    class="sorting"
-                                                    tabindex="0"
-                                                    aria-controls="example1"
-                                                    rowspan="1"
-                                                    colspan="1"
-                                                    aria-label="CSS grade: activate to sort column ascending"
-                                                    style="width: 190px;"
-                                                >Phone</th>
-                                                <th
-                                                    class="sorting"
-                                                    tabindex="0"
-                                                    aria-controls="example1"
-                                                    rowspan="1"
-                                                    colspan="1"
-                                                    aria-label="CSS grade: activate to sort column ascending"
-                                                    style="width: 190px;"
-                                                >Actions</th>
+                                                        class="sorting"
+                                                        tabindex="0"
+                                                        aria-controls="example1"
+                                                        rowspan="1"
+                                                        colspan="1"
+                                                        aria-label="Platform(s): activate to sort column ascending"
+                                                        style="width: 50px"
+                                                >Operation</th>
                                             </tr>
                                         </tfoot>
                                     </table>

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 
 use Illuminate\Http\Request;
-use Srmklive\PayPal\Services\ExpressCheckout;
+use Omnipay\Omnipay;
 
 class PaymentsController extends Controller
 {
@@ -18,28 +18,25 @@ class PaymentsController extends Controller
             'amount' => 'required'
         ]);
 
-        $product = [];
-        $product['items'] = [
-            [
-                'name' => 'Nike Joyride 2',
-                'price' => $request->amount,
-                'desc'  => 'Running shoes for Men',
-                'qty' => 1
-            ]
-        ];
-
-        $product['invoice_id'] = 1;
-        $product['invoice_description'] = "Order #{$product['invoice_id']} Bill";
-        $product['return_url'] = route('success.payment');
-        $product['cancel_url'] = route('cancel.payment');
-        $product['total'] = $request->amount;
-
         try {
-            $paypalModule = new ExpressCheckout;
-            $res = $paypalModule->setExpressCheckout($product);
-            $res = $paypalModule->setExpressCheckout($product, true);
 
-            return redirect($res['paypal_link']);
+            $gateway = Omnipay::create('PayPal_Rest');
+            $gateway->setClientId(env('PAYPAL_SANDBOX_CLIENT_ID','AaVlBLOqaLoyEUWE6s1BMiHF_ETbhfLK44UKfiPm1YO_So0xRe6hDjIBwHDMcKwHHostJaM6D5-0622k'));
+            $gateway->setSecret(env('PAYPAL_SANDBOX_CLIENT_SECRET','EMiNqrAAgLIDT5OBzPsB0Q791vHiqpm95HePI_iPlkwc27VCEHBqZA9AM4KO-5kZBn_eR5ZNzP_9TE5B'));
+            $gateway->setTestMode(env('APP_DEBUG'));
+
+            $response = $gateway->purchase(array(
+                'amount' => $request->amount/100,
+                'currency' => strtoupper(env('PAYPAL_CURRENCY', 'USD')),
+                'returnUrl' => route('success.payment'),
+                'cancelUrl' => PaymentsController::paymentCancel(),
+            ))->send();
+            if ($response->isRedirect()) {
+                $response->redirect(); // this will automatically forward the customer
+            } else {
+                // not successful
+                return redirect(PaymentsController::paymentCancel());
+            }
         } catch (\Exception $e) {
             return $e->getMessage();
         }
@@ -52,17 +49,28 @@ class PaymentsController extends Controller
 
     public function paymentSuccess(Request $request)
     {
-        try {
+        $gateway = Omnipay::create('PayPal_Rest');
+        $gateway->setClientId(env('PAYPAL_SANDBOX_CLIENT_ID','AaVlBLOqaLoyEUWE6s1BMiHF_ETbhfLK44UKfiPm1YO_So0xRe6hDjIBwHDMcKwHHostJaM6D5-0622k'));
+        $gateway->setSecret(env('PAYPAL_SANDBOX_CLIENT_SECRET','EMiNqrAAgLIDT5OBzPsB0Q791vHiqpm95HePI_iPlkwc27VCEHBqZA9AM4KO-5kZBn_eR5ZNzP_9TE5B'));
+        $gateway->setTestMode(env('APP_DEBUG'));
 
-            $paypalModule = new ExpressCheckout;
-            $response = $paypalModule->getExpressCheckoutDetails($request->token);
+        $request= $request->all();
 
-                if (in_array(strtoupper($response['ACK']), ['SUCCESS', 'SUCCESSWITHWARNING'])) {
-                    return 'Payment was successfull. The payment success page goes here!';
-                }
+        $transaction = $gateway->completePurchase(array(
+            'payer_id'             => $request['PayerID'],
+            'transactionReference' => $request['paymentId'],
+        ));
+        $response = $transaction->send();
 
-            } catch (\Exception $e) {
-            return $e->getMessage();
+        if ($response->isSuccessful()) {
+            $arr_body = $response->getData();
+            $data['payment_id'] = $arr_body['id'];
+            $data['payment_method'] = "paypal";
+
+            return "Payment Success";
+        }
+        else{
+            return redirect(PaymentsController::paymentCancel());
         }
     }
 }
