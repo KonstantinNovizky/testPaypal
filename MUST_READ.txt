@@ -1,0 +1,12 @@
+I uploaded all files(vendor, ...)
+So you don't need composer install.
+You need only run project with following command.
+	php artisan serve
+and then pls check this url.
+
+localhost:8000/go-payment
+
+and then insert some money and check payment.
+
+pls send me every page screenshout via your github url(lesa).
+thanks.
